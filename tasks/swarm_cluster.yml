@@ -63,8 +63,6 @@
 
 - name: Join the pending Swarm worker nodes.
   shell: docker swarm join
-        --listen-addr {{ docker_swarm_addr }}:{{ docker_swarm_port }}
-        --advertise-addr {{ docker_swarm_addr }}
         --token "{{ docker_worker_token.stdout }}"
         {{ docker_manager_address }}
   changed_when: False
@@ -76,8 +74,6 @@
 
 - name: Join the pending Swarm manager nodes.
   shell: docker swarm join
-        --listen-addr {{ docker_swarm_addr }}:{{ docker_swarm_port }}
-        --advertise-addr {{ docker_swarm_addr }}
         --token "{{ docker_manager_token.stdout }}"
         {{ docker_manager_address }}
   changed_when: False
