@@ -1,0 +1,30 @@
+---
+# Makes sure that the repo cache is fresh
+- name: Update APT cache.
+  apt:
+    update_cache: true
+  changed_when: false
+
+- name: Install python-pip.
+  package:
+    name: "{{ python_pip_packages }}"
+    state: present
+  when: (not skip_docker_py) or (ansible_python_version is version_compare('2.6.0', '>=')
+    and ansible_python_version is version_compare('2.7.9', '<'))
+
+- name: Install the Python SNI support packages.
+  package:
+    name: "{{ python_sni_support_packages }}"
+    state: present
+  when: ansible_python_version is version_compare('2.6.0', '>=')
+    and ansible_python_version is version_compare('2.7.9', '<')
+
+# There extra pip dependencies are needed to add SSL SNI support to
+# Python version prior to 2.7.9. SNI support is needed by the Ansible
+# apt_key module.
+- name: Install the Python SNI python-pip dependencies.
+  pip:
+    name: "{{ python_sni_pip_dependencies }}"
+    state: present
+  when: ansible_python_version is version_compare('2.6.0', '>=')
+    and ansible_python_version is version_compare('2.7.9', '<')
