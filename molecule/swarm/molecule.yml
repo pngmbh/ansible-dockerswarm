@@ -32,8 +32,8 @@ platforms:
 provisioner:
   name: ansible
   options:
-    diff: true
-    v: true
+    diff: false
+    v: false
   playbooks:
     create: ../resources/create.yml
     destroy: ../resources/destroy.yml
@@ -43,6 +43,9 @@ provisioner:
 
 lint:
   name: yamllint
+  options:
+    config-data:
+      ignore: venv
 
 verifier:
   name: testinfra
