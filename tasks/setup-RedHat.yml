@@ -1,0 +1,8 @@
+---
+- name: Install python-pip.
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ python_pip_packages }}"
+  when: (not skip_docker_py) or (ansible_python_version is version_compare('2.6.0', '>=')
+    and ansible_python_version is version_compare('2.7.9', '<'))
