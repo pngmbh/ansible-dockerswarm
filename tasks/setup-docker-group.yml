@@ -1,5 +1,4 @@
 ---
-
 - name: Add the Docker administrators to the Docker group
   user:
     name: "{{ item }}"
@@ -9,11 +8,11 @@
   become: true
   with_items: "{{ docker_group_users }}"
 
-- block:
-    - name: Gather users which were added during this run
-      set_fact:
-        __docker_users_added: "{{ addtogroup.results | selectattr('changed') | map(attribute='item') | list }}"
+- name: Gather users which were added during this run
+  set_fact:
+    __docker_users_added: "{{ addtogroup.results | selectattr('changed') | map(attribute='item') | list }}"
 
+- block:
     # See http://stackoverflow.com/a/37337848/1370301
     - name: Reset ansible connection after group changes (Ansible < 2.3.0).
       shell: "sleep 1; pkill -u {{ ansible_user }} {{ ssh_daemon }}"
