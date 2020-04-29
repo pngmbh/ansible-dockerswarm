@@ -9,15 +9,15 @@
   package:
     name: "{{ python_pip_packages }}"
     state: present
-  when: (not skip_docker_py) or (ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<'))
+  when: (not skip_docker_py) or (ansible_python_version is version('2.6.0', '>=')
+    and ansible_python_version is version('2.7.9', '<'))
 
 - name: Install the Python SNI support packages.
   package:
     name: "{{ python_sni_support_packages }}"
     state: present
-  when: ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<')
+  when: ansible_python_version is version('2.6.0', '>=')
+    and ansible_python_version is version('2.7.9', '<')
 
 # There extra pip dependencies are needed to add SSL SNI support to
 # Python version prior to 2.7.9. SNI support is needed by the Ansible
@@ -26,5 +26,5 @@
   pip:
     name: "{{ python_sni_pip_dependencies }}"
     state: present
-  when: ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<')
+  when: ansible_python_version is version('2.6.0', '>=')
+    and ansible_python_version is version('2.7.9', '<')
