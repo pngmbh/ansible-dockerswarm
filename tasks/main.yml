@@ -1,11 +1,15 @@
 ---
 
 # Variables setup
-- name: Include os-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
+- name: Setup for RedHat/Debian
+  block:
+    - name: Include os-specific variables.
+      include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Run os-specific specific setup
-  include: "setup-{{ ansible_os_family }}.yml"
+    - name: Run os-specific specific setup
+      include: "setup-{{ ansible_os_family }}.yml"
+  when:
+    - ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
 
 # Install the Docker repository
 - include: "repo-{{ ansible_os_family }}.yml"
