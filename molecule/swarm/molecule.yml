@@ -40,6 +40,8 @@ provisioner:
     prepare: ../resources/prepare.yml
   lint:
     name: ansible-lint
+    options:
+      x: 106,208,experimental
 
 lint:
   name: yamllint
