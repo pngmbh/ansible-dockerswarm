@@ -1,17 +1,5 @@
 ---
-
-# Specified version because of https://github.com/ansible/ansible/issues/17495
-- name: Install docker-py 1.9.0.
-  pip:
-    name: docker-py
-    version: 1.9.0
-    state: present
-  when: ansible_version is defined
-    and ansible_version.full is version('2.2.0.0', '<')
-
 - name: Install docker-py.
   pip:
-    name: docker-py
+    name: docker
     state: present
-  when: (ansible_version is not defined) or (ansible_version is defined
-    and ansible_version.full is version('2.2.0.0', '>='))
