@@ -1,7 +1,6 @@
 ---
-
 scenario:
-  name: swarm
+  name: swarm-ubuntu
 
 driver:
   name: docker
@@ -10,18 +9,11 @@ dependency:
   name: galaxy
 
 platforms:
-
-  - name: centos-7
-    image: centos:7
-    dockerfile_tpl: centos-systemd
-    groups:
-      - docker_swarm_manager
-
   - name: ubuntu-1804
     image: ubuntu:18.04
     dockerfile_tpl: debian-systemd
     groups:
-      - docker_swarm_worker
+      - docker_swarm_manager
 
   - name: debian-10
     image: debian:10
@@ -40,8 +32,6 @@ provisioner:
     prepare: ../resources/prepare.yml
   lint:
     name: ansible-lint
-    options:
-      x: 106,208,experimental
 
 lint:
   name: yamllint
