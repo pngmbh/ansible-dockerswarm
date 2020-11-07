@@ -1,0 +1,50 @@
+---
+scenario:
+  name: swarm-centos
+
+driver:
+  name: docker
+
+dependency:
+  name: galaxy
+
+platforms:
+
+  - name: centos-7
+    image: centos:7
+    dockerfile_tpl: centos-systemd
+    groups:
+      - docker_swarm_manager
+
+  - name: debian-10
+    image: debian:10
+    dockerfile_tpl: debian-systemd
+    groups:
+      - docker_swarm_worker
+
+provisioner:
+  name: ansible
+  options:
+    diff: false
+    v: false
+  playbooks:
+    create: ../resources/create.yml
+    destroy: ../resources/destroy.yml
+    prepare: ../resources/prepare.yml
+  lint:
+    name: ansible-lint
+
+lint:
+  name: yamllint
+  options:
+    config-data:
+      ignore: venv
+
+verifier:
+  name: testinfra
+  options:
+    vvv: true
+  additional_files_or_dirs:
+    - ../../resources/tests/
+  lint:
+    name: flake8   # Will use the rules defined in .flake8
