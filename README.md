@@ -137,27 +137,6 @@ You can assign labels to cluster running playbook with `--tags=swarm_labels`
       roles:
         - { role: atosatto.docker-swarm }
 
-Testing
--------
-
-Tests are performed by [Molecule](http://molecule.readthedocs.org/en/latest/).
-
-    $ pip install tox
-
-To test all the scenarios run
-
-    $ tox
-
-To run a custom molecule command
-
-    $ tox -e py27-ansible23 -- molecule test -s swarm-cluster
-
-The `MOLECULE_DRIVER_NAME` and `MOLECULE_TARGET_DISTRO` allows to change the Molecule driver from Docker to Vagrant and the tests target OS
-
-    $ MOLECULE_DRIVER_NAME=vagrant MOLECULE_TARGET_DISTRO=ubuntu-1604 tox
-
-To test the role on Ubuntu instead of CentOS set the
-
 License
 -------
 
