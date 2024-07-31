@@ -1,28 +1,15 @@
 ---
 
 galaxy_info:
-  author: Andrea Tosatto
-  description: Setup a Docker Swarm Cluster on Centos/RHEL, Ubuntu/Debian.
+  author: Planetary Quantum GmbH
+  description: Setup a Docker Swarm Cluster on Flatcar.
   min_ansible_version: 2.5
   license: MIT
-  issue_tracker_url: https://github.com/atosatto/ansible-dockerswarm/issues
+  issue_tracker_url: https://github.com/pngmbh/ansible-dockerswarm/issues
 
-  platforms:
-    - name: EL
-      versions:
-        - 7
-    - name: Ubuntu
-      versions:
-        - disco
-        - cosmic
-        - bionic
-        - xenial
-    - name: Debian
-      versions:
-        - buster
-        - stretch
+  platforms: []
   galaxy_tags:
     - docker
     - swarm
 
-dependencies: []
+dependencies: {}
