@@ -1,7 +1,8 @@
 ---
-
-# Setup the Docker Swarm Cluster
-- block:
-    - include: setup-swarm-cluster.yml
-    - include: setup-swarm-labels.yml
+- name: "Run Swarm Cluster Tasks"
+  block:
+    - name: "Setup Cluster"
+      ansible.builtin.include_tasks: setup-swarm-cluster.yml
+    - name: "Setup Labels"
+      ansible.builtin.include_tasks: setup-swarm-labels.yml
   when: not skip_swarm
