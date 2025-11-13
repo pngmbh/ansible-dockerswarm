@@ -1,32 +1,5 @@
 ---
 
-# Repository to be used for the installation of the Docker packages
-docker_repo: "{{ docker_repo_ce_stable }}"
-
-# Name of the package providing Docker
-docker_package_name: "docker-ce"
-
-# Version of the Docker package to be installed.
-# By default, the latest available version will be installed.
-docker_package_version: ""
-
-# Installation state of the Docker package.
-# Set it to 'latest' to upgrade Docker.
-docker_package_state: present
-
-# Extra packages that have to be installed together with Docker
-# e.g. linux-image-extra-virtual on some Debian systems
-docker_dependencies: "{{ default_docker_dependencies }}"
-
-# State of the Docker deamon service
-docker_service_state: "started"
-
-# Whether the Docker service should start on boot
-docker_service_enabled: "yes"
-
-# Docker Deamon configuration
-docker_daemon_config: {}
-
 # Docker swarm network can be define in order to be sure that
 # swarm cluster doesn't overlap with you infrastructure
 # docker_swarm_network: 10.10.8.0/24
@@ -37,16 +10,5 @@ docker_swarm_interface: "{{ ansible_default_ipv4['interface'] }}"
 docker_swarm_addr: "{{ hostvars[inventory_hostname]['ansible_' + docker_swarm_interface]['ipv4']['address'] }}"
 docker_swarm_port: 2377
 
-# Name of the Docker group
-docker_group_name: "docker"
-
-# List of the users in the Docker group
-docker_group_users:
-  - "{{ ansible_user | default(ansible_user_id) }}"  # if ansible_user is not defined, we default to the ansible ansible_user_id fact
-
-# Switches disabling the docker-engine, docker group and swarm-mode setup.
-skip_repo: false    # if true, skips the setup of the docker repository
-skip_engine: false  # if true, skips the docker engine installation
-skip_group: false   # if true, does not add the docker_admin_users to the docker_group_name
-skip_swarm: false   # if true, skips the swarm setup
-skip_docker_py: false  # if true, skips the installation of docker-py
+# Switch to disable swarm-mode setup
+skip_swarm: false  # if true, skips the swarm setup
