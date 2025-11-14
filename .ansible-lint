@@ -1,4 +1,9 @@
+---
 warn_list:
-  - '106'
-  - '208'
-  - experimental
+  - key-order[task]
+skip_list:
+  - '701'
+  - '301'
+  - 'role-name'
+exclude_paths:
+  - .github/
