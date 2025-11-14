@@ -1,16 +1,11 @@
 # Ansible Role: Docker Swarm
 
-[![Build Status](https://travis-ci.org/pngmbh/ansible-dockerswarm.svg?branch=pngmbh)](https://travis-ci.org/pngmbh/ansible-dockerswarm)
-[![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
-[![Ansible Role](http://img.shields.io/badge/galaxy-atosatto.docker--swarm-blue.svg?style=flat-square)](https://galaxy.ansible.com/atosatto/docker-swarm)
-[![GitHub tag](https://img.shields.io/github/tag/atosatto/ansible-dockerswarm.svg)](https://github.com/atosatto/ansible-dockerswarm/tags)
-
 Configure Docker Engine's "Swarm Mode" (https://docs.docker.com/engine/swarm/) to create a cluster of Docker nodes.
 This is a minimal role that assumes Docker is already installed and configured on your hosts (e.g., Flatcar Linux).
 
 ## Requirements
 
-An Ansible 2.3 or higher installation.
+See [test-requirements.txt](./test-requirements.txt).
 
 ## Dependencies
 
@@ -32,10 +27,6 @@ By default, the ip address of `docker_swarm_interface`.
     docker_swarm_port: 2377
 
 Listen port for the Swarm raft API.
-
-    skip_swarm: false
-
-If you want to disable swarm-mode setup, set `skip_swarm: true`.
 
 Swarm node labels
 -----------------
@@ -103,3 +94,4 @@ Author Information
 ------------------
 
 Andrea Tosatto ([@\_hilbert\_](https://twitter.com/_hilbert_))
+[Planetary Quantum GmbH](https://github.com/hostwithquantum)
