@@ -14,4 +14,5 @@ jobs:
           # this should be in sync with our deploy image
           python-version: "3.11.x"
       - run: pip install -r test-requirements.txt
+      - run: ansible-galaxy collection install -r test-requirements.yml
       - run: ansible-lint ./

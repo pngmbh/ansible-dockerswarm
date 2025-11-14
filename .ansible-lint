@@ -2,7 +2,6 @@
 warn_list:
   - key-order[task]
 skip_list:
-  - '701'
   - '301'
   - 'role-name'
 exclude_paths:
