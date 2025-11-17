@@ -1,0 +1,18 @@
+---
+name: ci
+
+on:
+  pull_request
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          # this should be in sync with our deploy image
+          python-version: "3.11.x"
+      - run: pip install -r test-requirements.txt
+      - run: ansible-galaxy collection install -r test-requirements.yml
+      - run: ansible-lint ./

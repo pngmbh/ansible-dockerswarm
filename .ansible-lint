@@ -1,0 +1,8 @@
+---
+warn_list:
+  - key-order[task]
+skip_list:
+  - '301'
+  - 'role-name'
+exclude_paths:
+  - .github/
